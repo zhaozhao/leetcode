@@ -1,0 +1,41 @@
+#include "catch.hpp"
+#include <numeric>
+
+using namespace std;
+
+vector<vector<int>> threeSum(vector<int>& nums) {
+    vector<vector<int>> triples;
+    sort(nums.begin(), nums.end());
+    int i = 0, last = nums.size() - 1;
+    while (i < last) {
+        int a = nums[i], j = i+1, k = last;
+        while (j < k) {
+            int b = nums[j], c = nums[k], sum = a+b+c;
+            if (sum == 0) triples.push_back({a, b, c});
+            if (sum <= 0) while (nums[j] == b && j < k) j++;
+            if (sum >= 0) while (nums[k] == c && j < k) k--;
+        }
+        while (nums[i] == a && i < last) i++;
+    }
+    return triples;
+}
+
+
+TEST_CASE("3 sum") {
+    SECTION("leetcode example") {
+        vector<int> test_case = {-1, 0, 1, 2, -1, 4};
+        vector<vector<int>> expected = {
+                {-1, -1, 2},
+                {-1, 0,  1},
+        };
+        REQUIRE(threeSum(test_case) == expected);
+    }
+    SECTION("leetcode example") {
+        vector<int> test_case = {0, 0, 0};
+        vector<vector<int>> expected = {
+                {0, 0, 0}
+        };
+        REQUIRE(threeSum(test_case) == expected);
+    }
+
+}
