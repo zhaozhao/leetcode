@@ -31,10 +31,10 @@ TEST_CASE("swap nodes in pairs") {
     ListNode third(4);
     second.next = &third;
 
-    auto swaped = swapPairs(&head);
+    auto swapped = swapPairs(&head);
 
-    REQUIRE(swaped->val == 2);
-    REQUIRE(swaped->next->val == 1);
-    REQUIRE(swaped->next->next->val == 4);
-    REQUIRE(swaped->next->next->next->val == 3);
+    REQUIRE(swapped->val == 2);
+    REQUIRE(swapped->next->val == 1);
+    REQUIRE(swapped->next->next->val == 4);
+    REQUIRE(swapped->next->next->next->val == 3);
 }
